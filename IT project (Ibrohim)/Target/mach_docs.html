@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Документы машин</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <div id="header-container"></div>
+        <div class="content-body">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <h4 class="card-title">Документы машин</h4>
+                        <div class="ms-auto">
+                            <a id="createActBtn" data-bs-toggle="modal" data-bs-target="#create_act_modal"
+                                class="btn btn-sm btn-secondary ms-2">
+                                <i class="las la-file-alt"></i> Создать акт прием передачи
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <select id="filterType" class="form-control">
+                                    <option value="">Все типы</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" id="searchVin" class="form-control" placeholder="Поиск по VIN" />
+                            </div>
+                            <div class="col-md-3">
+                                <!-- пусто, если нужно добавить ещё фильтры -->
+                            </div>
+                            <div class="col-md-3">
+                                <button id="searchButton" class="btn btn-primary w-100">
+                                    Поиск
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-sm mb-0 table-striped">
+                                <thead></thead>
+                                <tbody id="machDocsTable"></tbody>
+                            </table>
+                            <div id="totalCount" class="mt-2">Всего записей: 0</div>
+                            <div id="paginationContainer" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="create_act_modal" tabindex="-1" aria-labelledby="createActModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createActModalLabel">
+                            Создать Акт приема-передачи
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="za-page">
+                            <div class="container">
+                                <h3 class="za-page_title">
+                                    <strong>Акт приёма-передачи автотранспортного средства для
+                                        перегона</strong>
+                                </h3>
+                                <div class="za-info-table">
+                                    <h4 class="za-info-table_first">
+                                        г. ____________ <br />«_» ____________ 20 г.
+                                    </h4>
+                                    <h4 class="za-info-table_second">
+                                        Мы, нижеподписавшиеся:
+                                        <strong>Собственник:</strong>
+                                        ____________________________________________ (ФИО,
+                                        паспортные данные, адрес)
+                                    </h4>
+                                    <h4 class="za-info-table_third">
+                                        и<br />
+                                        <strong>Водитель (Лицо, осуществляющее перегон):</strong>
+                                        _______________________ (ФИО, паспортные данные, адрес)
+                                    </h4>
+                                    <div class="za-main-table">
+                                        <h4 class="za-main-table_title">
+                                            составили настоящий акт о нижеследующем:
+                                        </h4>
+                                        <ul class="za-main-table_info">
+                                            <li class="table_info_item1">
+                                                <span>1.</span><strong>Собственник</strong> передаёт, а
+                                                <strong>Водитель</strong>
+                                                принимает
+                                                автотранспортное средство
+                                                для его перегона по маршруту:
+                                                <strong>Откуда:</strong> ____________________________ <br>
+                                                <strong>Куда:</strong> ____________________________
+                                            </li>
+                                            <li class="table_info_item2">
+                                                <h4 class="table_info_item">
+                                                    <span>2.</span>Сведения об автотранспортном средстве:
+                                                </h4>
+                                            </li>
+                                            <li class="table_info_item2">
+                                            <li class="table_info_item">
+                                            <li class="item">
+                                                Марка, модель: _______________________________
+                                            </li>
+                                            <li class="item">
+                                                Государственный регистрационный номер: _____________
+                                            </li>
+                                            <li class="item">
+                                                VIN (если есть): ____________________________
+                                            </li>
+                                            <li class="item">
+                                                Цвет: ____________________________
+                                            </li>
+                                            <li class="item">
+                                                Год выпуска: ______
+                                            </li>
+                                            <li class="item">
+                                                Пробег: ___________ км
+                                            </li>
+                                            <li class="item">
+                                                Техническое состояние: ____________________________
+                                            </li>
+                                            </li>
+                                            </li>
+                                            <li class="table_info_item3">
+                                                <h4 class="table_info_item3">
+                                                    <span>3.</span>Транспортное средство передано в исправном состоянии,
+                                                    комплектность:
+                                                </h4>
+                                            </li>
+                                            <li class="table_info_item3">
+                                            <li class="item">
+                                                Ключи от авто: [ ] Да
+                                            </li>
+                                            <li class="item">
+                                                Свидетельство о регистрации ТС: [ ] Да
+                                            </li>
+                                            <li class="item">
+                                                Страховой полис ОСАГО: [ ] Да
+                                            </li>
+                                            <li class="item">
+                                                Доверенность на управление ТС: [ ] Да / Нет (указать форму передачи
+                                                рав)
+                                            </li>
+                                            <li class="item">
+                                                Прочее: _______________________
+                                            </li>
+                                            </li>
+                                            <li class="table_info_item4">
+                                                <h4 class="table_info_item4">
+                                                    <span>4.</span>Обязательства сторон:
+                                                </h4>
+                                            </li>
+                                            <li class="table_info_item4">
+                                            <li class="table_info_item4">
+                                            <li class="item">
+                                                Водитель обязуется перегнать транспортное средство в указанный
+                                                пункт назначения в срок до «_» ____________ <strong>20 г.</strong>
+                                                <br>
+                                            </li>
+                                            <li class="item">
+                                                Водитель обязуется соблюдать правила дорожного движения и бережно
+                                                относиться к автомобилю.
+                                            </li>
+                                            <li class="item">
+                                                Все расходы на топливо и возможные текущие расходы (указать, если
+                                                есть договорённости): ____________________.
+                                            </li>
+                                            </li>
+                                            </li>
+                                            <li class="table_info_item5">
+                                                <h4 class="table_info_item">
+                                                    <span>5.</span>Настоящий акт составлен в двух экземплярах, по одному
+                                                    для каждой
+                                                    стороны.
+                                                </h4>
+                                            </li>
+                                    </div>
+                                </div>
+                                <div class="za-signature-table">
+                                    <h4 class="za-signature-table_title">
+                                        <strong>Подписи сторон:</strong>
+                                    </h4>
+                                    <h4 class="za-signature-table-info">
+                                        Собственник ТС: _______________ /ФИО/ Водитель:
+                                        _______________ /ФИО/
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Закрыть
+                            </button>
+                            <button type="button" class="btn btn-primary" id="saveActBtn">
+                                Сохранить акт
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="copyright">
+                    <p>
+                        Copyright © Developed by
+                        <a href="https://inte.uz" target="_blank">Inte</a> 2025
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
